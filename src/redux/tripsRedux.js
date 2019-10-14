@@ -22,16 +22,20 @@ export const getFilteredTrips = ({trips, filters}) => {
 
 export const getTripById = ({trips}, tripId) => {
   const filtered = trips;
-
   // TODO - filter trips by tripId
 
   console.log('filtering trips by tripId:', tripId, filtered);
-  return filtered.length ? filtered[0] : {error: true};
+  let element;
+  for(element of filtered) {
+    if(element.id == tripId){
+      break;
+    }
+  }
+  return filtered.length ? element : {error: true};
 };
 
 export const getTripsForCountry = ({trips}, countryCode) => {
   const filtered = trips;
-
   // TODO - filter trips by countryCode
 
   console.log('filtering trips by countryCode:', countryCode, filtered);
