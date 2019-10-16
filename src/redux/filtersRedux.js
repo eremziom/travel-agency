@@ -32,9 +32,18 @@ export default function reducer(statePart = [], action = {}) {
     // TODO - handle other action types
     case CHANGE_DURATION:
       console.log('payload to: ', action.payload);
-      return {
-        ...statePart,
-      };
+      if(action.payload.type == 'from'){
+        return {
+          ...statePart,
+          duration: action.payload.changeFrom,
+        };
+      } else if(action.payload.type == 'to'){
+        return {
+          ...statePart,
+          duration: action.payload.changeTo,
+        };
+      }
+      break;
 
     case CHANGE_FILTER:
       return{
