@@ -24,27 +24,16 @@ export const changeSearchFilter = payload => ({ payload, type: CHANGE_FILTER });
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
     case CHANGE_PHRASE:
-      console.log('payload searcy to: ', action.payload);
       return {
         ...statePart,
         searchPhrase: action.payload,
       };
     // TODO - handle other action types
     case CHANGE_DURATION:
-      console.log('payload to: ', action.payload);
-      if(action.payload.type == 'from'){
-        return {
-          ...statePart,
-          duration: action.payload.changeFrom,
-        };
-      } else if(action.payload.type == 'to'){
-        return {
-          ...statePart,
-          duration: action.payload.changeTo,
-        };
-      }
-      break;
-
+      return {
+        ...statePart,
+        duration: action.payload,
+      };
     case CHANGE_FILTER:
       return{
         ...statePart,

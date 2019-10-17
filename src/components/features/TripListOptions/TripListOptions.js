@@ -16,9 +16,18 @@ class TripListOptions extends React.Component {
     }
   }
 
-  handleDuration(type, value, fil){
+  handleDuration(type, value){
     console.log('Changing duration', type, value);
-    this.props.changeSearchDuration(type, value, fil);
+    let from = this.props.filters.duration.from;
+    let to = this.props.filters.duration.to;
+    console.log('++++', from, to);
+    if(type == 'from'){
+      from = value;
+    }
+    if(type == 'to'){
+      to = value;
+    }
+    this.props.changeSearchDuration({from, to});
     // TODO - use action dispatcher from props
   }
 
@@ -43,11 +52,11 @@ class TripListOptions extends React.Component {
             <div className={styles.filter}>
               <label>
                 Duration from:
-                <input className={`${styles.input} ${styles.number}`} type='number' value={filters.duration.from} min='1' max='14' onChange={event => this.handleDuration('from', event.currentTarget.value, filters)} />
+                <input className={`${styles.input} ${styles.number}`} type='number' value={filters.duration.from} min='1' max='14' onChange={event => this.handleDuration('from', event.currentTarget.value)} />
               </label>
               <label>
                 to:
-                <input className={`${styles.input} ${styles.number}`} type='number' value={filters.duration.to} min='1' max='14' onChange={event => this.handleDuration('to', event.currentTarget.value, filters)} />
+                <input className={`${styles.input} ${styles.number}`} type='number' value={filters.duration.to} min='1' max='14' onChange={event => this.handleDuration('to', event.currentTarget.value)} />
               </label>
             </div>
           </Col>
