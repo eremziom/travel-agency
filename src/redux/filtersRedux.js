@@ -37,7 +37,7 @@ export default function reducer(statePart = [], action = {}) {
     case CHANGE_FILTER:
       return{
         ...statePart,
-        tags: [action.payload],
+        tags: action.payload,
       };
     default:
       return statePart;
