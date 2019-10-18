@@ -1,9 +1,29 @@
 import React from 'react';
+import styles from './OrderOption.scss';
+import {formatPrice} from '../../../utils/formatPrice';
+import PropTypes from 'prop-types';
 
-const OrderOptionDropdown = () => {
-  return(
-    <div>OrderOptionDropdown</div>
-  );
+const OrderOptionDropdown = ({values, required, currentValue, setOrderOption}) => (
+
+  <select
+    className={styles.dropdown}
+    value={currentValue}
+    onChange={event => setOrderOption(event.currentTarget.value)}
+  >
+    {required ? '' : (
+      <option key='null' value=''>---</option>
+    )}
+    {values.map(value => (
+      <option key={value.id} value={value.id}>{value.name} ({formatPrice(value.price)})</option>
+    ))}
+  </select>
+);
+
+OrderOptionDropdown.propTypes = {
+  values: PropTypes.node,
+  required: PropTypes.node,
+  currentValue: PropTypes.node,
+  setOrderOption: PropTypes.func,
 };
 
 export default OrderOptionDropdown;

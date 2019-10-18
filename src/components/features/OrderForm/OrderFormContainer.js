@@ -6,8 +6,8 @@ const mapStateToProps = state => ({
   options: getOrderOptions(state),
 });
 
-const mapDispatchtoProps = dispatch => ({
-  setOrderOption: argument => dispatch(setOrderOption({argument})),
+const mapDispatchToProps = (dispatch) => ({
+  setOrderOption: argument => dispatch(setOrderOption(argument)),
 });
 
-export default connect(mapStateToProps, mapDispatchtoProps)(OrderForm);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);
