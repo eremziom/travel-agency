@@ -15,12 +15,11 @@ class OrderForm extends React.Component {
   render(){
     const {tripCost, options} = this.props;
     const pricing = pricingArray;
-    console.log('pricing to: ', pricing);
     return(
       <Row>
         {pricing.map(option => (
           <Col md={4} key={option.id}>
-            <OrderOption {...option} />
+            <OrderOption {...option} currentValue={options[option.id]} />
           </Col>
         ))}
         <Col xs={12}>

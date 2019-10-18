@@ -12,8 +12,9 @@ const optionTypes = {
   number: OrderOptionNumber,
 };
 
-const OrderOption = ({name, type, ...otherProps}) => {
+const OrderOption = ({name, type, currentValue, ...otherProps}) => {
   const OptionComponent = optionTypes[type];
+  console.log('currentValue: ', currentValue);
   if(!OptionComponent){
     return null;
   } else{
