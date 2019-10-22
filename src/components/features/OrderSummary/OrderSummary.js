@@ -15,7 +15,7 @@ class OrderSummary extends React.Component{
     const {cost, options} = this.props;
     return(
 
-      <h2 className={styles.component}>Total: <strong>{calculateTotal(formatPrice(cost), options)}</strong></h2>
+      <h2 className={styles.component}>Total: <strong>${Number((calculateTotal(formatPrice(cost), options)).toFixed(2))}</strong></h2>
     );
   }
 }
