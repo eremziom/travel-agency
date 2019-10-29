@@ -9,14 +9,15 @@ import { formatPrice } from '../../../utils/formatPrice';
 import { calculateTotal } from '../../../utils/calculateTotal';
 import settings from '../../../data/settings';
 
-const sendOrder = (options, tripCost) => {
-  console.log('options: ', options, ' tripCost: ', tripCost);
+const sendOrder = (options, tripCost, tripName, countryCode) => {
+  console.log('options: ', options, ' tripCost: ', tripCost, 'name: ', tripName, 'code: ', countryCode);
   const totalCost = formatPrice(calculateTotal(tripCost, options));
-  console.log('options: ', options, ' tripCost: ', tripCost);
 
   const payload = {
     ...options,
     totalCost,
+    tripName,
+    countryCode,
   };
 
   const url = settings.db.url + '/' + settings.db.endpoint.orders;
@@ -44,10 +45,13 @@ class OrderForm extends React.Component {
     tripCost: PropTypes.string,
     options: PropTypes.object,
     setOrderOption: PropTypes.func,
+    tripName: PropTypes.string,
+    countryCode: PropTypes.string,
   }
 
   render(){
-    const {tripCost, options, setOrderOption} = this.props;
+    const {tripCost, options, setOrderOption, tripName, countryCode} = this.props;
+    console.log('+++ ', tripName, '----', countryCode);
     const pricing = pricingArray;
     return(
       <Row>
@@ -58,7 +62,7 @@ class OrderForm extends React.Component {
         ))}
         <Col xs={12}>
           <OrderSummary cost={tripCost} options={options}/>
-          <Button onClick={() => sendOrder(options, tripCost)}>Order now!</Button>
+          <Button onClick={() => sendOrder(options, tripCost, tripName, countryCode)}>Order now!</Button>
         </Col>
       </Row>
     );
