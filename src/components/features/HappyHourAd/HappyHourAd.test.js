@@ -46,6 +46,11 @@ const mockDate = (customDate) => class extends Date {
   }
 };
 
+beforeAll(() => {
+  const utilsModule = jest.requireActual('../../../utils/formatTime.js');
+  utilsModule.formatTime = jest.fn(seconds => seconds);
+});
+
 const checkDescriptionAtTime = (time, expectedDescription) => {
   it(`should show correct at ${time}`, () => {
     global.Date = mockDate(`2019-05-15T${time}.135Z`);
