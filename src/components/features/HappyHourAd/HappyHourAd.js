@@ -1,10 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './HappyHourAd.scss';
 
 class HappyHourAd extends React.Component{
+  constructor(){
+    super();
+    setInterval(() => {
+      this.forceUpdate();
+    }, 1000);
+  }
 
   static propTypes = {
     title: PropTypes.string,
+    promoDescription: PropTypes.string,
   }
 
   getCountdownTime(){
@@ -19,11 +27,15 @@ class HappyHourAd extends React.Component{
   }
 
   render(){
-    const {title} = this.props;
+    const {title, promoDescription} = this.props;
+    const countTime = this.getCountdownTime();
     return(
-      <div>
-        <h3 className='title'>{title}</h3>
-        <div className='promoDescription'>{this.getCountdownTime()}</div>
+      <div className={styles.component}>
+        <h3 className={styles.title}>{title}</h3>
+        {countTime > 82800 ? (
+          <div className={styles.promoDescription}>{promoDescription}</div>) : (
+          <div className={styles.promoDescription}>{this.getCountdownTime()}</div>
+        )}
       </div>
     );
   }

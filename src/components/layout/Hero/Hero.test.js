@@ -27,8 +27,12 @@ describe('Component Hero', () => {
     expect(component.hasClass('dummy')).toBe(true);
   });
 
-  /* it('should throw error without required props', () => {
-    expect(() => shallow(<Hero />)).toThrow();
-  }); */
+  it('should render HappyHourAd', () => {
+    const expectedTitle = 'sample text';
+    const expectedImage = 'image.jpg';
+    const component = shallow(<Hero titleText={expectedTitle} imageSrc={expectedImage} />);
+
+    expect(component.find('HappyHourAd').length).toEqual(1);
+  });
 
 });
